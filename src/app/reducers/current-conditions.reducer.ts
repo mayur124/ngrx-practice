@@ -11,15 +11,6 @@ export const initialState: ConditionState = {
   currentConditions: new Map(),
 };
 
-// export const conditionsReducer = createReducer(
-//   initialState,
-//   on(currentConditionsLoadSuccess, (state, conditionAction) => {
-//     const conditionMap = new Map(state.currentConditions);
-//     conditionMap.set(conditionAction.zipcode, conditionAction.conditions)
-//     return { ...state, currentConditions: conditionMap }
-//   }),
-// );
-
 export function conditionsReducer(state = initialState, action: CurrentConditionUnion): ConditionState {
   switch (action.type) {
     case currentConditionsLoadSuccess.type:

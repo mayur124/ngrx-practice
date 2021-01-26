@@ -14,7 +14,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { CurrentConditionsEffects } from './effects/current-conditions.effects'
+import { ForecastEffects } from "./effects/forecast.effects";
 import { HttpClientModule } from '@angular/common/http';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -28,9 +30,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    EffectsModule.forRoot([CurrentConditionsEffects]),
+    EffectsModule.forRoot([CurrentConditionsEffects, ForecastEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }) // {stateKey: 'router'} is reducer's key of router mentioned in index.ts
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

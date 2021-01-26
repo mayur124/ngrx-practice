@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { removeZipcode } from 'src/app/actions/zipcode.actions';
-import { State } from 'src/app/reducers';
+import { selectZipcodeList, State } from 'src/app/reducers';
 import { WeatherService } from 'src/app/services/weather/weather.service';
 
 @Component({
@@ -20,8 +20,8 @@ export class CurrentConditionsComponent implements OnInit {
     private store: Store<State>,
     public weatherService: WeatherService) {
     this.store
-      .select(state => state.zipcode)
-      .subscribe(zips => this.zipcodeList = zips.zipcodes);
+      .select(selectZipcodeList) //hover over selectZipcodeList
+      .subscribe(zips => this.zipcodeList = zips);
     this.store
       .select(state => state.condition)
       .subscribe(conditions => {
