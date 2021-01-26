@@ -15,8 +15,13 @@ export class WeatherService {
   addCurrentConditions(zipcode: string): void {
     // Here we make a request to get the curretn conditions data from the API. Note the use of backticks and an expression to insert the zipcode
     this.http
-      .get(`${WeatherService.URL}/weather?zip=${zipcode},us&units=imperial&APPID=${WeatherService.APPID}`)
+      .get(`${WeatherService.URL}/weather?zip=${zipcode}&units=imperial&APPID=${WeatherService.APPID}`)
       .subscribe((data) => this.currentConditions.push({ zip: zipcode, data: data }));
+  }
+
+  loadCurrentConditions(zipcode: string): Observable<any> {
+    // Here we make a request to get the curretn conditions data from the API. Note the use of backticks and an expression to insert the zipcode
+    return this.http.get(`${WeatherService.URL}/weather?zip=${zipcode}&units=imperial&APPID=${WeatherService.APPID}`);
   }
 
   removeCurrentConditions(zipcode: string) {
@@ -33,7 +38,7 @@ export class WeatherService {
   getForecast(zipcode: string): Observable<any> {
     // Here we make a request to get the forecast data from the API. Note the use of backticks and an expression to insert the zipcode
     return this.http.get(
-      `${WeatherService.URL}/forecast/daily?zip=${zipcode},us&units=imperial&cnt=5&APPID=${WeatherService.APPID}`
+      `${WeatherService.URL}/forecast/daily?zip=${zipcode}&units=imperial&cnt=5&APPID=${WeatherService.APPID}`
     );
   }
 

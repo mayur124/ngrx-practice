@@ -1,0 +1,12 @@
+.container {
+  padding: 1rem 5rem;
+  border-bottom: 1px solid #cecece;
+}
+.container input {
+  width: 98%;
+}
+.container input,
+.container button {
+  padding: 0.5rem;
+  margin-top: 1rem;
+}

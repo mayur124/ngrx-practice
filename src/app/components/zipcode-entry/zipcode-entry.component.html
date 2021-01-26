@@ -1,1 +1,6 @@
-<p>zipcode-entry works!</p>
+<div class="container">
+  <h2>Enter a zipcode:</h2>
+  <input type="text" #zipcode placeholder="Zipcode" />
+  <br />
+  <button (click)="addLocation(zipcode.value)">Add location</button>
+</div>
